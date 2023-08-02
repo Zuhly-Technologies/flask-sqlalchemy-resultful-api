@@ -9,6 +9,7 @@ class Job(db.Model):
     created_at = db.Column(db.DateTime, nullable = False)
     status = db.Column(db.String(10), nullable = False)
 
+
     tasks = db.relationship('Task', backref='job', lazy=True)
 
     def __repr__(self):
