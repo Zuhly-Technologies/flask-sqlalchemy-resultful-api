@@ -67,7 +67,7 @@ class JobPostResource(Resource):
     # the URL will not contain the resource id
     def post(self):
         try:
-            job = job_schema.load(request.form, partial=True)
+            job = job_schema.load(request.get_json(), partial=True)
             print('loaded')
         except ValidationError as err:
             print(err.messages)
