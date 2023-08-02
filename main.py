@@ -1,5 +1,5 @@
 from data import initialize
-from resources import add_resource
+from resources import *
 from flask import Flask
 from flask_restful import Api
 
