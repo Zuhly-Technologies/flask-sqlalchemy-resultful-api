@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import request,abort, Response
 from marshmallow import fields, ValidationError
 from data import ma,db
-from models.job import Job, job_schema
+from models.job import Job, job_schema,Task, task_schema
 
 
 
