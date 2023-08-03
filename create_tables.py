@@ -9,8 +9,6 @@ from main import app
 #         db.create_all()
 #         print ("Done!")
 
-
-# initialize(app)
 if __name__ == "__main__":
     with app.app_context():
         # Run this file directly to create the database tables.
