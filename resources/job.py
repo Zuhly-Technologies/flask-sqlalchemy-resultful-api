@@ -2,8 +2,7 @@ from flask_restful import Resource
 from flask import request,abort, Response
 from marshmallow import fields, ValidationError
 from data import ma,db
-from models.job import Job, job_schema,Task, task_schema
-
+from models.job import Job, job_schema
 
 
 class JobResource(Resource):
@@ -14,8 +13,6 @@ class JobResource(Resource):
             abort(404, description="Could not find that id")
         return job_schema.dump(job),200
 
-
-
     # Check if a resource exists.  If not create it.
     # In REST PUT can also be used to update an existing resource
     # And the URL must contain the resource id
@@ -24,7 +21,7 @@ class JobResource(Resource):
         if job:
             abort(404, description="Id already exists, cannot add")
         try:
-            job = job_schema.load(request.form, partial=True)
+            job = job_schema.load(request.get_json(), partial=True)
             job.id = id
         except ValidationError as err:
             print(err.messages)
@@ -39,7 +36,7 @@ class JobResource(Resource):
         if not job:
             abort(404, message = "Id does not exist, cannot modify")
         try:
-            job_update = job_schema.load(request.form, partial=True)
+            job_update = job_schema.load(request.get_json(), partial=True)
         except ValidationError as err:
             abort(404, err.messages)
         if job_update.created_at:
@@ -61,7 +58,6 @@ class JobResource(Resource):
         return Response(status = 204)
 
     
-
 class JobPostResource(Resource):
     # POST is to create a new resource, whether it already exists or not.
     # the URL will not contain the resource id
