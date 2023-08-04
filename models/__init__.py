@@ -1,2 +1,3 @@
-from .job import Job, Task
+from .job import Job
+from .task import Task
 
