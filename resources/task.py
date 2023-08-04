@@ -2,8 +2,7 @@ from flask_restful import Resource
 from flask import request,abort, Response
 from marshmallow import fields, ValidationError
 from data import ma,db
-from models.job import Task, task_schema
-
+from models.task import Task, task_schema
 
 
 class TaskResource(Resource):
